@@ -1,0 +1,43 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ex: <http://example.org#> .
+
+# クラスの定義
+ex:仲間 a rdfs:Class ;
+    rdfs:label "仲間" .
+
+ex:冒険 a rdfs:Class ;
+    rdfs:label "冒険" ;
+    rdfs:subClassOf ex:仲間 .
+
+ex:ボスの命令 a rdfs:Class ;
+    rdfs:label "ボスの命令" .
+
+ex:侵略 a rdfs:Class ;
+    rdfs:label "侵略" ;
+    rdfs:subClassOf ex:ボスの命令 .
+
+# インスタンスの定義
+ex:ドラゴンボール a ex:冒険 ;
+    rdfs:label "ドラゴンボール" .
+
+ex:地球 a ex:侵略 ;
+    rdfs:label "地球" .
+
+# プロパティの定義
+ex:孫悟空 a rdf:Property ;
+    rdfs:label "孫悟空" ;
+    rdfs:domain ex:冒険;
+	rdfs:domain ex:ドラゴンボール, ex:地球 .
+    
+
+ex:ベジータ a rdf:Property ;
+    rdfs:label "ベジータ" ;
+    rdfs:range  ex:侵略 ;
+	rdfs:range ex:ドラゴンボール, ex:地球 .
+	
+    
+
+ex:サイヤ人 a rdf:Property ;
+    rdfs:label "サイヤ人" ;
+    rdfs:subPropertyOf ex:孫悟空, ex:ベジータ .
